@@ -1,0 +1,33 @@
+<% msg ||= 'Hello World> <' %>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.css">
+  </head>
+  <body style="padding-top: 50px;">
+    <div class="container" style="max-width: 800px;">
+      <div class="flash-container">
+        <div class="flash-alert">
+        </div>
+      </div>
+      <form action="#" method="POST">
+        <%= Rack::Csrf.tag(env) %>
+        <div class="form-group">
+          <label for="text">text</label>
+          <textarea name="text" maxlength="32000" rows="10" class="form-control"></textarea>
+        </div>
+        <button id="btn" type="submit" class="btn btn-lg">提交</button></center>
+      </form>
+    </div>
+  </body>
+  <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script src="/js/all.js"></script>
+  <script>
+    showmsg("<%=msg%>");
+  </script>
+</html>
+
