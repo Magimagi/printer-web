@@ -1,4 +1,4 @@
-Just a Printer
+Just a WebPrinter
 
 ## How to boot?
 Clone this project.
