@@ -4,6 +4,9 @@
 # Date: 2014.10.03
 ##########################################
 get '/' do
+  # Record.all.each do |x|
+  #  puts x.text
+  # end
   erb :index
 end
 
@@ -12,6 +15,8 @@ post '/' do
   open(cur, 'w') do |f|
     f.puts params["text"]
   end
-  `lp -d HP #{cur}`
+  # cur = Record.new(text: params["text"])
+  # cur.save
+  #  `lp -d HP #{cur}`
   erb :index, locals: { msg: "ok" }
 end
