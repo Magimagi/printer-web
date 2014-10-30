@@ -16,9 +16,22 @@ ActiveRecord::Schema.define do
     t.integer :count
   end
   create_table :records, force: true do |t|
-    t.integer :teamid
+    t.integer :team_id
     t.string :text
-    t.datetime :create_time
-    t.datetime :finish_time
+    t.datetime :created_at
+    t.datetime :finished_at
   end
 end
+
+# Generate root user
+require "../models/team.rb"
+require 'digest/md5'
+Team.create(username: 'root',
+            password: Digest::MD5.hexdigest('YourSecretHere'),
+            teamname: 'Root',
+            position: 'None',
+            auth: 100,
+            count: 0)
+Team.create(username: '123',
+            password: Digest::MD5.hexdigest('123'),
+            teamname: 'test')

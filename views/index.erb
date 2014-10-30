@@ -1,6 +1,6 @@
 <% if session[:id] %>
-<%   info = Teams.find_by_id(session[:id]) %>
-<%   print = Records.where(teamid: session[:id]).all %>
+<%   info = Team.find session[:id] %>
+<%   print = info.records.all %>
 <% end %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -66,7 +66,7 @@
             <% print.each do |v| %>
               <tr>
                 <th><%= v.id %></th>
-                <th><%= v.create_time %></th>
+                <th><%= v.created_at %></th>
                 <th><a target="_blank" href="view_source?id=<%= v.id %>">Source Code</a></th>
               </tr>
             <% end %>
