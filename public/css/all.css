@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Ubuntu Light'), local('Ubuntu-Light'), url("/fonts/ubuntul.woff") format('woff');
+}
+
+html, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Ubuntu", "Monaco", "WenQuanYi Micro Hei", "Microsoft YaHei" !important;
+}
+
+.flash-container {
+  display: none;
+  background: none repeat scroll 0% 0% #222;
+  text-align: center;
+  cursor: pointer;
+  color: #FFF;
+  font-size: 16px;
+  bottom: 0px;
+  z-index: 100;
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.flash-container .flash-alert {
+  text-shadow: 0px 1px 1px #CCC;
+  padding: 13.5px;
+}

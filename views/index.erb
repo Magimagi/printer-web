@@ -1,0 +1,93 @@
+<% if session[:id] %>
+<%   info = Teams.find_by_id(session[:id]) %>
+<%   print = Records.where(teamid: session[:id]).all %>
+<% end %>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><%= PROJECT_NAME %></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <% if not session[:id] %>
+          <form class="navbar-form navbar-right" role="form" action="login" method="POST">
+            <%= Rack::Csrf.tag(env) %>
+            <div class="form-group">
+              <input type="text" name="username" placeholder="Username" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+          <% else %>
+            <div class="navbar-brand navbar-right">
+              <%= info.username %> (<%= info.teamname %>)
+            </div>
+          <% end %>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" style="max-width: 800px; padding-top: 100px;">
+      <div class="flash-container">
+        <div class="flash-alert">
+        </div>
+      </div>
+      <% if session[:id] %>
+      <form action="#" method="POST">
+        <%= Rack::Csrf.tag(env) %>
+        <div class="form-group">
+          <label for="text">Source Code</label>
+          <textarea name="text" maxlength="32000" rows="10" class="form-control"></textarea>
+        </div>
+        <button id="btn" type="submit" class="btn">Submit</button></center>
+      </form>
+      <h2 class="sub-header">Print List</h2>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Submit Time</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% print.each do |v| %>
+              <tr>
+                <th><%= v.id %></th>
+                <th><%= v.create_time %></th>
+                <th><a target="_blank" href="view_source?id=<%= v.id %>">Source Code</a></th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% else %>
+        <center>
+          <img src="img/logo.png">
+          <h2 class="sub-header">Please login first</h2>
+        </center>
+      <% end %>
+    </div>
+  </body>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/all.js"></script>
+  <% if defined? msg %>
+  <script>
+      showmsg("<%=msg%>");
+  </script>
+  <% end %>
+</html>
+
