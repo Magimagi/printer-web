@@ -2,7 +2,7 @@
   font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 300;
-  src: local('Ubuntu Light'), local('Ubuntu-Light'), url("http://o.0u0.moe/public/fonts/ubuntul.woff") format('woff');
+  src: local('Ubuntu Light'), local('Ubuntu-Light'), url("/fonts/ubuntul.woff") format('woff');
 }
 
 html, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
