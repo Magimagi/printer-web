@@ -12,7 +12,6 @@ Install ruby version ^2.1.0.
 It works.
 
 ### License
-
 The MIT License (MIT)
 
 Copyright (c) 2014 Magica
