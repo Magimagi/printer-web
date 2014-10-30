@@ -7,7 +7,8 @@ end
 # Database
 require 'active_record'
 ActiveRecord::Base.establish_connection adapter: 'sqlite3',
-                                        database: File.expand_path('./db/db.sqlite',  SINATRA_ROOT)
+                                        database: File.expand_path('./db/db.sqlite',  SINATRA_ROOT)                                    
+ActiveRecord::Base.default_timezone = :local
 
 # Models
 Dir[File.expand_path('./models/*.rb', SINATRA_ROOT)].uniq.each do |model|
