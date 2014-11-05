@@ -1,7 +1,13 @@
-<% if session[:id] %>
-<%   info = Team.find session[:id] %>
-<%   print = info.records.all %>
-<% end %>
+<% 
+	if session[:id] 
+		info = Team.find session[:id]
+		if info.auth == 100 
+			print = Record.all
+		else
+			print = info.records.all
+		end
+	 end
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -44,7 +50,7 @@
         </div>
       </div>
       <% if session[:id] %>
-      <form action="#" method="POST">
+      <form action="/" method="POST">
         <%= Rack::Csrf.tag(env) %>
         <div class="form-group">
           <label for="text">Source Code</label>
@@ -59,7 +65,10 @@
             <tr>
               <th>id</th>
               <th>Submit Time</th>
-              <th>Source</th>
+			  <th>Source</th>
+			  <% if info.auth == 100 %>
+			  <th>Operator</th>
+			  <% end %>
             </tr>
           </thead>
           <tbody>
@@ -67,7 +76,10 @@
               <tr>
                 <th><%= v.id %></th>
                 <th><%= v.created_at %></th>
-                <th><a target="_blank" href="view_source?id=<%= v.id %>">Source Code</a></th>
+				<th><a target="_blank" href="view_source?id=<%= v.id %>">Source Code</a></th>
+				<% if info.auth == 100 %>
+				<th><a href="reprint?id=<%= v.id %>">Reprint</a></th>
+				<% end %>
               </tr>
             <% end %>
           </tbody>

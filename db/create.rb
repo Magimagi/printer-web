@@ -27,7 +27,7 @@ end
 require "../models/team.rb"
 require 'digest/md5'
 Team.create(username: 'root',
-            password: Digest::MD5.hexdigest('YourSecretHere'),
+            password: Digest::MD5.hexdigest('zjuicpc'),
             teamname: 'Root',
             position: 'None',
             auth: 100,
