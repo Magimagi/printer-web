@@ -65,6 +65,7 @@
             <tr>
               <th>id</th>
               <th>Submit Time</th>
+              <th>Print Time</th>
 			  <th>Source</th>
 			  <% if info.auth == 100 %>
 			  <th>Operator</th>
@@ -76,6 +77,7 @@
               <tr>
                 <th><%= v.id %></th>
                 <th><%= v.created_at %></th>
+                <th><%= v.finished_at %></th>
 				<th><a target="_blank" href="view_source?id=<%= v.id %>">Source Code</a></th>
 				<% if info.auth == 100 %>
 				<th><a href="reprint?id=<%= v.id %>">Reprint</a></th>
@@ -87,7 +89,7 @@
       </div>
       <% else %>
         <center>
-          <img src="img/logo.png">
+          <img src="img/logo.jpg">
           <h2 class="sub-header">Please login first</h2>
         </center>
       <% end %>

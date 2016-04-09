@@ -25,13 +25,19 @@ end
 
 # Generate root user
 require "../models/team.rb"
-require 'digest/md5'
+require 'digest'
 Team.create(username: 'root',
             password: Digest::MD5.hexdigest('zjuicpc'),
             teamname: 'Root',
             position: 'None',
             auth: 100,
             count: 0)
-Team.create(username: '123',
-            password: Digest::MD5.hexdigest('123'),
-            teamname: 'test')
+open('nb2015utf.csv', 'r') do |f|
+	while data = f.gets do
+		data = data.split ','
+		Team.create(username: data[2],
+					password: Digest::MD5.hexdigest(data[4].chomp),
+					teamname: "#{data[0]} - #{data[1]}",
+					count: 0)
+	end
+end

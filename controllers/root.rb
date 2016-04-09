@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 def call_print(fn)
-  `lp -d HP #{fn}`
+  
 end
 
 get '/' do
@@ -67,4 +67,12 @@ get '/reprint' do
   end
   call_print(cur)
   erb :index, locals: { msg: "Reprint successfully!" }
+end
+
+get '/getqueue' do
+  p = Record.where(finished_at: [nil]).first
+  p.finished_at = Time.now
+  p.save
+  t = Team.find p.team_id
+  erb "Team info: #{t.username} (#{t.teamname})\n\n#{p.text}"
 end
