@@ -12,6 +12,7 @@ ActiveRecord::Schema.define do
     t.string :password
     t.string :teamname
     t.string :position
+    t.string :login_ip
     t.integer :auth
     t.integer :count
   end
@@ -32,12 +33,12 @@ Team.create(username: 'root',
             position: 'None',
             auth: 100,
             count: 0)
-open('nb2015utf.csv', 'r') do |f|
-	while data = f.gets do
-		data = data.split ','
-		Team.create(username: data[2],
-					password: Digest::MD5.hexdigest(data[4].chomp),
-					teamname: "#{data[0]} - #{data[1]}",
-					count: 0)
-	end
-end
+#open('nb2015utf.csv', 'r') do |f|
+#	while data = f.gets do
+#		data = data.split ','
+#		Team.create(username: data[2],
+#					password: Digest::MD5.hexdigest(data[4].chomp),
+#					teamname: "#{data[0]} - #{data[1]}",
+#					count: 0)
+#	end
+#end
