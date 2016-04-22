@@ -35,7 +35,7 @@ post '/login' do
   password = params["password"]
   t = Team.find_by_username username
   halt erb :index, locals: { msg: "Something went wrong..." } unless t && t.password == Digest::MD5.hexdigest(password)
-  if t.login_ip == nil then
+  if t.auth == 100 || t.login_ip == nil then
     t.login_ip = request.ip
     t.save
   else
