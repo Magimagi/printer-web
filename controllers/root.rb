@@ -42,7 +42,7 @@ post '/login' do
     if t.login_ip != request.ip then
       Record.create(
         :team_id => 1,
-        :text => "Cheating found! For team #{username}.",
+        :text => "Cheating found! For team #{username} (#{request.ip}).",
       )
       halt erb :index, locals: { msg: "DO NOT DO BAD THINGS..." }
     end
